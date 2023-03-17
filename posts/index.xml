@@ -5,20 +5,7 @@
     <link>https://onefangg.github.io/posts/</link>
     <description>Recent content in Posts on directory</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Fri, 20 Jan 2023 16:07:48 +0800</lastBuildDate><atom:link href="https://onefangg.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>using hatch for application development</title>
-      <link>https://onefangg.github.io/posts/python_setup/</link>
-      <pubDate>Fri, 20 Jan 2023 16:07:48 +0800</pubDate>
-      
-      <guid>https://onefangg.github.io/posts/python_setup/</guid>
-      <description>THIS IS STILL A DRAFT Certain sections of prose are incomplete; code is somewhat complete, but will be revisited at a later date
- A barebones exploration of the use of hatch, in the use for development of a simple Python application.
-Using this post as a form of reference or self-help link for python project set-up.
-Or, you can skip the step-by-step tedious explanation by jumping to the full pyproject.</description>
-    </item>
-    
+    <language>en-us</language><atom:link href="https://onefangg.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>hackathons</title>
       <link>https://onefangg.github.io/posts/hackathons/</link>
