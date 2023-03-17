@@ -2,13 +2,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://onefangg.github.io/categories/</loc>
-  </url><url>
     <loc>https://onefangg.github.io/</loc>
-  </url><url>
-    <loc>https://onefangg.github.io/posts/hackathons/</loc>
+    <lastmod>2023-03-17T20:55:00+08:00</lastmod>
   </url><url>
     <loc>https://onefangg.github.io/posts/</loc>
+    <lastmod>2023-03-17T20:55:00+08:00</lastmod>
+  </url><url>
+    <loc>https://onefangg.github.io/posts/python_setup/</loc>
+    <lastmod>2023-03-17T20:55:00+08:00</lastmod>
+  </url><url>
+    <loc>https://onefangg.github.io/categories/</loc>
+  </url><url>
+    <loc>https://onefangg.github.io/posts/hackathons/</loc>
   </url><url>
     <loc>https://onefangg.github.io/tags/</loc>
   </url>

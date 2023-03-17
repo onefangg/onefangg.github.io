@@ -5,7 +5,22 @@
     <link>https://onefangg.github.io/</link>
     <description>Recent content on directory</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://onefangg.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language>
+    <lastBuildDate>Fri, 17 Mar 2023 20:55:00 +0800</lastBuildDate><atom:link href="https://onefangg.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>using hatch for application development</title>
+      <link>https://onefangg.github.io/posts/python_setup/</link>
+      <pubDate>Fri, 17 Mar 2023 20:55:00 +0800</pubDate>
+      
+      <guid>https://onefangg.github.io/posts/python_setup/</guid>
+      <description>A barebones exploration of the use of hatch, for the use of development of a simple Python application.
+Using this post as a form of reference or self-help link for python project set-up.
+Or, you can skip the step-by-step tedious explanation by jumping to the full pyproject.toml file.
+Creating a new project hatch new simple-app
+It creates the project with the following project structure:
+simple_app ├── src │ └── simple_app │ ├── __about__.</description>
+    </item>
+    
     <item>
       <title>hackathons</title>
       <link>https://onefangg.github.io/posts/hackathons/</link>
