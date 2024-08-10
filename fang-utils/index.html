@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>fang utils</title>
+  <!-- css is beyond my comprehension -->
+  <style>
+    body {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 95%;
+      height: 95%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+</head>
+
+<body>
+  <noscript>This page contains webassembly and javascript content, please enable javascript in your browser.</noscript>
+  <script src="./bootstrap.js"></script>
+  <div id="container" style="display: flex;">
+    <div id="userInput" style="float: left;width:500px;height: 500px">
+      <div id="container">
+        <textarea type="text" id="userJsonText" style="width: 500px;height:500px" placeholder="Paste JSON"></textarea>
+        <button id="userJson">Parse to Json</button>
+      </div>
+      <div id="container" style="display: flex;">
+        <input type="text" id="searchText" style="flex: 1">
+        <button id="search">Search</button>
+      </div>
+    </div>
+    <div style="float:right; width:500px;height: 500px">
+      <div id="userDisplay"></div>
+      <div id="searchDisplay"></div>
+    </div>
+  </div>
+</body>
+
+</html>
