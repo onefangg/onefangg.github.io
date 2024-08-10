@@ -6,7 +6,21 @@
     <description>Recent content in Posts on directory</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 17 Mar 2023 20:55:00 +0800</lastBuildDate><atom:link href="https://onefangg.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 10 Aug 2024 21:11:31 +0800</lastBuildDate><atom:link href="https://onefangg.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Adding my silly utils to Github Pages</title>
+      <link>https://onefangg.github.io/posts/adding_custom_func_gh/</link>
+      <pubDate>Sat, 10 Aug 2024 21:11:31 +0800</pubDate>
+      
+      <guid>https://onefangg.github.io/posts/adding_custom_func_gh/</guid>
+      <description>I wanted to try a dumb and quick way to just draft up some silly util functions to speed up some mundane debugging I always do at my work.
+Use case is as-such:
+1. I have a very fat JSON value
+2. It&amp;rsquo;s fat. One single X object can have about 40-ish key-values.
+3. It usually has an array of X objects, and I&amp;rsquo;m only interested in one key-value.
+Very corner use-case, but I just wanted something blunt and silly to work with.</description>
+    </item>
+    
     <item>
       <title>using hatch for application development</title>
       <link>https://onefangg.github.io/posts/python_setup/</link>

@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Adding my silly utils to Github Pages | directory</title>
+<meta name="keywords" content="" />
+<meta name="description" content="I wanted to try a dumb and quick way to just draft up some silly util functions to speed up some mundane debugging I always do at my work.
+Use case is as-such:
+1. I have a very fat JSON value
+2. It&rsquo;s fat. One single X object can have about 40-ish key-values.
+3. It usually has an array of X objects, and I&rsquo;m only interested in one key-value.
+Very corner use-case, but I just wanted something blunt and silly to work with.">
+<meta name="author" content="">
+<link rel="canonical" href="https://onefangg.github.io/posts/adding_custom_func_gh/" />
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.c88963fe2d79462000fd0fb1b3737783c32855d340583e4523343f8735c787f0.css" integrity="sha256-yIlj/i15RiAA/Q&#43;xs3N3g8MoVdNAWD5FIzQ/hzXHh/A=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js" integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5&#43;kdJvBz5iKbt6B5PJI="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://onefangg.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://onefangg.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://onefangg.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://onefangg.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://onefangg.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.91.2" />
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="Adding my silly utils to Github Pages" />
+<meta property="og:description" content="I wanted to try a dumb and quick way to just draft up some silly util functions to speed up some mundane debugging I always do at my work.
+Use case is as-such:
+1. I have a very fat JSON value
+2. It&rsquo;s fat. One single X object can have about 40-ish key-values.
+3. It usually has an array of X objects, and I&rsquo;m only interested in one key-value.
+Very corner use-case, but I just wanted something blunt and silly to work with." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://onefangg.github.io/posts/adding_custom_func_gh/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-08-10T21:11:31&#43;08:00" />
+<meta property="article:modified_time" content="2024-08-10T21:11:31&#43;08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Adding my silly utils to Github Pages"/>
+<meta name="twitter:description" content="I wanted to try a dumb and quick way to just draft up some silly util functions to speed up some mundane debugging I always do at my work.
+Use case is as-such:
+1. I have a very fat JSON value
+2. It&rsquo;s fat. One single X object can have about 40-ish key-values.
+3. It usually has an array of X objects, and I&rsquo;m only interested in one key-value.
+Very corner use-case, but I just wanted something blunt and silly to work with."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://onefangg.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Adding my silly utils to Github Pages",
+      "item": "https://onefangg.github.io/posts/adding_custom_func_gh/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Adding my silly utils to Github Pages",
+  "name": "Adding my silly utils to Github Pages",
+  "description": "I wanted to try a dumb and quick way to just draft up some silly util functions to speed up some mundane debugging I always do at my work.\nUse case is as-such:\n1. I have a very fat JSON value\n2. It\u0026rsquo;s fat. One single X object can have about 40-ish key-values.\n3. It usually has an array of X objects, and I\u0026rsquo;m only interested in one key-value.\nVery corner use-case, but I just wanted something blunt and silly to work with.",
+  "keywords": [
+    
+  ],
+  "articleBody": "I wanted to try a dumb and quick way to just draft up some silly util functions to speed up some mundane debugging I always do at my work.\nUse case is as-such:\n1. I have a very fat JSON value\n2. It’s fat. One single X object can have about 40-ish key-values.\n3. It usually has an array of X objects, and I’m only interested in one key-value.\nVery corner use-case, but I just wanted something blunt and silly to work with.\nProcess (…or lack thereof?)\nMy main goal was to get something dirty, hacky and easy out ASAP; just short of a elegant CICD process.\nI have used Hugo-Papermod for the last almost 2 years or-so; so I just needed to get some static JS files boostrapped onto my hugo config and everything else can be left to the utils to do the heavy lifting.\nTo fast-forward the uninteresting part of the utils:\n Didn’t want to write the utils in vanilla JS So I wrote the functionailty in Rust - Compile to WASM - Browser-facing JS calls the compiled WASM Then build the package  This was my first (!) attempt in trying out Rust - WASM so I didn’t have time / the know-how to make things perfect; but anyhow the code is out and it’s tracked under this repo.\nThis is the part where it gets a tad scuffed. The bulk of my hugo configs are only on my PC so there’s not an easy nor sexy way to pull the source code for my scripts and push it nicely to the hugo site generator to handle.\nBaby steps - I’ll just zip the built files from the utils and plonk it into the static/ folder within the template. Reading this stackoverflow post helped me figure out the pieces to fit the custom files in.\nFollowing the post, this gets added to my config:\nmenu: main: - identifier: fang-utils name: fang-utils url: \"fang-utils/index.html\" weight: 1 And things fit in (nice!).\n",
+  "wordCount" : "333",
+  "inLanguage": "en",
+  "datePublished": "2024-08-10T21:11:31+08:00",
+  "dateModified": "2024-08-10T21:11:31+08:00",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://onefangg.github.io/posts/adding_custom_func_gh/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "directory",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://onefangg.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://onefangg.github.io/" accesskey="h" title="directory (Alt + H)">directory</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://onefangg.github.io/fang-utils/index.html" title="fang-utils">
+                    <span>fang-utils</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title">
+      Adding my silly utils to Github Pages<sup><span class="entry-isdraft">&nbsp;&nbsp;[draft]</span></sup>
+    </h1>
+    <div class="post-meta"><span title='2024-08-10 21:11:31 +0800 +08'>August 10, 2024</span>
+
+</div>
+  </header> 
+  <div class="post-content"><p>I wanted to try a dumb <em>and</em> quick way to just draft up some silly util functions to speed up some mundane debugging I always do at my work.</p>
+<p><strong>Use case is as-such:</strong></p>
+<p><strong>1.</strong> I have a very fat JSON value</p>
+<p><strong>2.</strong> It&rsquo;s fat. One single X object can have about 40-ish key-values.</p>
+<p><strong>3.</strong> It usually has an array of X objects, and I&rsquo;m only interested in one key-value.</p>
+<p>Very corner use-case, but I just wanted something blunt and silly to work with.</p>
+<h4 id="process">Process<a hidden class="anchor" aria-hidden="true" href="#process">#</a></h4>
+<p>(&hellip;or lack thereof?)</p>
+<p>My main goal was to get something dirty, hacky and easy out ASAP; just short of a elegant CICD process.</p>
+<p>I have used Hugo-Papermod for the last almost 2 years or-so; so I just needed to get some static JS files boostrapped onto my hugo config and everything else can be left to the utils to do the heavy lifting.</p>
+<p>To fast-forward the uninteresting part of the utils:</p>
+<ul>
+<li>Didn&rsquo;t want to write the utils in vanilla JS</li>
+<li>So I wrote the functionailty in Rust -&gt; Compile to WASM -&gt; Browser-facing JS calls the compiled WASM</li>
+<li>Then build the package</li>
+</ul>
+<p>This was my first (!) attempt in trying out Rust -&gt; WASM so I didn&rsquo;t have time / the know-how to make things perfect; but anyhow the code is out and it&rsquo;s tracked under this <a href="https://github.com/onefangg/fang-utils">repo</a>.</p>
+<p>This is the part where it gets a tad scuffed. The bulk of my hugo configs are only on my PC so there&rsquo;s not an easy nor sexy way to pull the source code for my scripts and push it nicely to the hugo site generator to handle.</p>
+<p>Baby steps - I&rsquo;ll just zip the built files from the utils and plonk it into the <code>static/</code> folder within the template. Reading this <a href="https://stackoverflow.com/questions/59678701/is-it-possible-to-add-a-single-custom-html-page-to-an-existing-hugo-theme-like-a">stackoverflow post</a> helped me figure out the pieces to fit the custom  files in.</p>
+<p>Following the post, this gets added to my config:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#f92672">menu</span>:
+  <span style="color:#f92672">main</span>:
+    - <span style="color:#f92672">identifier</span>: <span style="color:#ae81ff">fang-utils</span>
+      <span style="color:#f92672">name</span>: <span style="color:#ae81ff">fang-utils</span>
+      <span style="color:#f92672">url</span>: <span style="color:#e6db74">&#34;fang-utils/index.html&#34;</span>
+      <span style="color:#f92672">weight</span>: <span style="color:#ae81ff">1</span>
+</code></pre></div><p>And things <a href="%22https://onefangg.github.io/fang-utils/%22">fit in</a> (nice!).</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2024 <a href="https://onefangg.github.io/">directory</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>
