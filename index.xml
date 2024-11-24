@@ -6,15 +6,14 @@
     <description>Recent content on directory</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 10 Aug 2024 21:11:31 +0800</lastBuildDate><atom:link href="https://onefangg.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 24 Nov 2024 10:41:31 +0800</lastBuildDate><atom:link href="https://onefangg.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>adding silly utils to Github Pages</title>
       <link>https://onefangg.github.io/posts/adding_custom_func_gh/</link>
-      <pubDate>Sat, 10 Aug 2024 21:11:31 +0800</pubDate>
+      <pubDate>Sun, 24 Nov 2024 10:41:31 +0800</pubDate>
       
       <guid>https://onefangg.github.io/posts/adding_custom_func_gh/</guid>
-      <description>I wanted to try a dumb and quick way to just draft up some silly util functions to speed up some mundane debugging I always do at my work.
-Process (&amp;hellip;or lack thereof?)
+      <description>Preamble I wanted to try a dumb and quick way to just draft up some silly util functions to speed up some mundane debugging I always do at my work.
 My main goal was to get something dirty and hacky; just short of a elegant CICD process.
 I have used Hugo-Papermod for the last almost 2 years or-so; so I just needed to get some static JS files boostrapped onto my hugo config and everything else can be left to the utils to do the heavy lifting.</description>
     </item>
