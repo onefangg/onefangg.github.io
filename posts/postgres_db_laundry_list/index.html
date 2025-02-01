@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>laundry list for working with Postgres | directory</title>
+<meta name="keywords" content="" />
+<meta name="description" content="Having recently had the opportunity to dig into the database at work to do some housekeeping and optimisation, and got (self-inflictedly) nerd-sniped into researching a ton more on this topic than expected. I came up with a laundry list of-sorts to track the typical strategies / pitfalls that I&rsquo;ve come across so far:
+Laundry List Indexes  Are the queries indexed? Sequential scans can be inefficient if tables are big (if there&rsquo;s not a lot of rows, that shouldn&rsquo;t be the main cause) If they are indexed, is the planner making use of it?">
+<meta name="author" content="">
+<link rel="canonical" href="https://onefangg.github.io/posts/postgres_db_laundry_list/" />
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.c88963fe2d79462000fd0fb1b3737783c32855d340583e4523343f8735c787f0.css" integrity="sha256-yIlj/i15RiAA/Q&#43;xs3N3g8MoVdNAWD5FIzQ/hzXHh/A=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js" integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5&#43;kdJvBz5iKbt6B5PJI="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://onefangg.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://onefangg.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://onefangg.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://onefangg.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://onefangg.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.91.2" />
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="laundry list for working with Postgres" />
+<meta property="og:description" content="Having recently had the opportunity to dig into the database at work to do some housekeeping and optimisation, and got (self-inflictedly) nerd-sniped into researching a ton more on this topic than expected. I came up with a laundry list of-sorts to track the typical strategies / pitfalls that I&rsquo;ve come across so far:
+Laundry List Indexes  Are the queries indexed? Sequential scans can be inefficient if tables are big (if there&rsquo;s not a lot of rows, that shouldn&rsquo;t be the main cause) If they are indexed, is the planner making use of it?" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://onefangg.github.io/posts/postgres_db_laundry_list/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2025-02-01T00:00:00&#43;08:00" />
+<meta property="article:modified_time" content="2025-02-01T00:00:00&#43;08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="laundry list for working with Postgres"/>
+<meta name="twitter:description" content="Having recently had the opportunity to dig into the database at work to do some housekeeping and optimisation, and got (self-inflictedly) nerd-sniped into researching a ton more on this topic than expected. I came up with a laundry list of-sorts to track the typical strategies / pitfalls that I&rsquo;ve come across so far:
+Laundry List Indexes  Are the queries indexed? Sequential scans can be inefficient if tables are big (if there&rsquo;s not a lot of rows, that shouldn&rsquo;t be the main cause) If they are indexed, is the planner making use of it?"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://onefangg.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "laundry list for working with Postgres",
+      "item": "https://onefangg.github.io/posts/postgres_db_laundry_list/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "laundry list for working with Postgres",
+  "name": "laundry list for working with Postgres",
+  "description": "Having recently had the opportunity to dig into the database at work to do some housekeeping and optimisation, and got (self-inflictedly) nerd-sniped into researching a ton more on this topic than expected. I came up with a laundry list of-sorts to track the typical strategies / pitfalls that I\u0026rsquo;ve come across so far:\nLaundry List Indexes  Are the queries indexed? Sequential scans can be inefficient if tables are big (if there\u0026rsquo;s not a lot of rows, that shouldn\u0026rsquo;t be the main cause) If they are indexed, is the planner making use of it?",
+  "keywords": [
+    
+  ],
+  "articleBody": "Having recently had the opportunity to dig into the database at work to do some housekeeping and optimisation, and got (self-inflictedly) nerd-sniped into researching a ton more on this topic than expected. I came up with a laundry list of-sorts to track the typical strategies / pitfalls that I’ve come across so far:\nLaundry List Indexes  Are the queries indexed? Sequential scans can be inefficient if tables are big (if there’s not a lot of rows, that shouldn’t be the main cause) If they are indexed, is the planner making use of it?  if the index in-question is an multi-column index, run explain on the query to ensure that th   Drop unused indexes - one point of realisation for me was that the ORM abstracted points away from the execution of the DB query such that I wasn’t thinking hard enough about what was actually happening.  At times, it’s not clear whether an index is ‘useful’(it’s not likely you have production-like data in lower environments). In those cases, monitor the usages in lower environments (or even production) and decide whether or not to go ahead and create it.    Query Planner  Speaking of which, don’t run explain analyze on your production database. (explain simply runs what the plan for your query is, explain + analyze it actually runs your query) Select only columns that are needed - always be explicitly in the columns needed from the DB to not only cut down on bandwidth costs and IOPS.  Maintenance  Connection pooling; Postgres spawns a new process for each new client (incurring more startup-cost and memory)  In the context of EF Core, context pooling != connection pooling. but the underlying driver should have had handled it   Regular vacuuming; check via pg_stat_all_tables. Larger tables will need more TLC than smaller tables, tuning a lower percentage for autovacuum_vacuum_scale_factor will help reduce the amount of dead tuples on the tables Statistics; is analyse being ran on the tables? check via pg_stat_all_tables  You can also create your own statistics for the query planner to explicitly track, instead of relying on the default statistics alone.    Everything else (ie. lessons learnt) Temporary files While debugging a join on two relatively large tables, it resulted in (what initially seemed to be) a sizeably large amount of writes (about Turns out, this creation of files occurs happens when the joins require more memory than what is the default (work_mem = 4MB). When the query to construct the hash table behind the join occurs, when there is more data than memory available, the keys that needs to be joined more on ‘spills over’ as files are written to disk as a temporary intermediary, and are thereafter processed in batches. As each batch gets processed, these temporary files are removed from disk (ie. after the query gets executed)  The above is a very condensed version of what actually happens. A good in-depth deep dive can be found under this excellent free book available. This article here provides a more in-depth look on why and how these can happen.   While it defies what is initally expected, this is just yet another mechanism that Postgres has to handle large amount of joins - there is little to be alarmed for in most cases, except for when there are any queries that are running longer than expected (of which it would be better to monitor temp files usage)  There are costs implications, especially if the DB is ran on a managed instance, so tread with an appropriate amount of caution.    ",
+  "wordCount" : "604",
+  "inLanguage": "en",
+  "datePublished": "2025-02-01T00:00:00+08:00",
+  "dateModified": "2025-02-01T00:00:00+08:00",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://onefangg.github.io/posts/postgres_db_laundry_list/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "directory",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://onefangg.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://onefangg.github.io/" accesskey="h" title="directory (Alt + H)">directory</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://onefangg.github.io/fang-paint/index.html" title="fang-paint">
+                    <span>fang-paint</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://onefangg.github.io/fang-utils/index.html" title="fang-utils">
+                    <span>fang-utils</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title">
+      laundry list for working with Postgres
+    </h1>
+    <div class="post-meta"><span title='2025-02-01 00:00:00 +0800 +08'>February 1, 2025</span>
+
+</div>
+  </header> 
+  <div class="post-content"><p>Having recently had the opportunity to dig into the database at work to do some housekeeping and optimisation, and got (self-inflictedly) nerd-sniped into researching a ton more on this topic than expected. I came up with a laundry list of-sorts to track the typical strategies / pitfalls that I&rsquo;ve come across so far:</p>
+<h4 id="laundry-list">Laundry List<a hidden class="anchor" aria-hidden="true" href="#laundry-list">#</a></h4>
+<h5 id="indexes">Indexes<a hidden class="anchor" aria-hidden="true" href="#indexes">#</a></h5>
+<ul>
+<li>Are the queries indexed? Sequential scans can be inefficient if tables are big (if there&rsquo;s not a lot of rows, that shouldn&rsquo;t be the main cause)</li>
+<li>If they are indexed, is the planner making use of it?
+<ul>
+<li>if the index in-question is an multi-column index, run explain on the query to ensure that th</li>
+</ul>
+</li>
+<li>Drop unused indexes - one point of realisation for me was that the ORM abstracted points away from the execution of the DB query such that I wasn&rsquo;t thinking hard enough about what was actually happening.
+<ul>
+<li>At times, it&rsquo;s not clear whether an index is &lsquo;useful&rsquo;(it&rsquo;s not likely you have production-like data in lower environments). In those cases, monitor the usages in lower environments (or even production) and decide whether or not to go ahead and create it.</li>
+</ul>
+</li>
+</ul>
+<h5 id="query-planner">Query Planner<a hidden class="anchor" aria-hidden="true" href="#query-planner">#</a></h5>
+<ul>
+<li>Speaking of which, don&rsquo;t run explain analyze on your production database. (explain simply runs what the plan for your query is, explain + analyze it actually <em>runs</em> your query)</li>
+<li>Select only columns that are needed - always be explicitly in the columns needed from the DB to not only cut down on bandwidth costs and IOPS.</li>
+</ul>
+<h5 id="maintenance">Maintenance<a hidden class="anchor" aria-hidden="true" href="#maintenance">#</a></h5>
+<ul>
+<li>Connection pooling; Postgres spawns a new process for each new client (incurring more startup-cost and memory)
+<ul>
+<li>In the context of EF Core, context pooling != connection pooling. but the underlying driver should <a href="https://learn.microsoft.com/en-us/ef/core/performance/advanced-performance-topics?tabs=with-di%2Cexpression-api-with-constant">have had handled it</a></li>
+</ul>
+</li>
+<li>Regular vacuuming; check via pg_stat_all_tables. Larger tables will need more TLC than smaller tables, tuning a lower percentage for <code>autovacuum_vacuum_scale_factor</code> will help reduce the amount of dead tuples on the tables</li>
+<li>Statistics; is analyse being ran on the tables? check via pg_stat_all_tables
+<ul>
+<li>You can also create your own statistics for the query planner to explicitly track, instead of relying on the default statistics alone.</li>
+</ul>
+</li>
+</ul>
+<h4 id="everything-else-ie-lessons-learnt">Everything else (ie. lessons learnt)<a hidden class="anchor" aria-hidden="true" href="#everything-else-ie-lessons-learnt">#</a></h4>
+<h5 id="temporary-files">Temporary files<a hidden class="anchor" aria-hidden="true" href="#temporary-files">#</a></h5>
+<p>While debugging a join on two relatively large tables, it resulted in (what initially seemed to be) a sizeably large amount of writes (about &lt;100 MB) on the hash joins. This seemed initially weird - how can a read query cause writes to occur?</p>
+<ul>
+<li>Turns out, this creation of files occurs happens when the joins require more memory than what is the <a href="https://www.postgresql.org/docs/current/runtime-config-resource.html#GUC-WORK-MEM">default</a> (<code>work_mem</code> = 4MB). When the query to construct the hash table behind the join occurs, when there is more data than memory available, the keys that needs to be joined more on &lsquo;spills over&rsquo; as files are written to disk as a temporary intermediary, and are thereafter processed in batches. As each batch gets processed, these temporary files are removed from disk (ie. after the query gets executed)
+<ul>
+<li>The above is a <strong>very</strong> condensed version of what actually happens. A good in-depth deep dive can be found under this <a href="https://postgrespro.com/community/books/internals">excellent free book available.</a></li>
+<li>This article here provides a more <a href="https://jesipow.com/blog/postgres-reads-cause-writes/">in-depth look on why and how these can happen.</a></li>
+</ul>
+</li>
+<li>While it defies what is initally expected, this is just yet another mechanism that Postgres has to handle large amount of joins - there is little to be alarmed for in most cases, except for when there are any queries that are running longer than expected (of which it would be better to monitor temp files usage)
+<ul>
+<li>There <em>are</em> costs implications, especially if the DB is ran on a managed instance, so tread with an appropriate amount of caution.</li>
+</ul>
+</li>
+</ul>
+
+
+  </div>
+
+  <footer class="post-footer">
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2025 <a href="https://onefangg.github.io/">directory</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>
