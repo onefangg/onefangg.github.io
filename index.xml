@@ -5,6 +5,42 @@
     <link>https://onefangg.github.io/</link>
     <description>Recent content on directory</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://onefangg.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language>
+    <lastBuildDate>Sat, 01 Feb 2025 00:00:00 +0800</lastBuildDate><atom:link href="https://onefangg.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>laundry list for working with Postgres</title>
+      <link>https://onefangg.github.io/posts/postgres_db_laundry_list/</link>
+      <pubDate>Sat, 01 Feb 2025 00:00:00 +0800</pubDate>
+      
+      <guid>https://onefangg.github.io/posts/postgres_db_laundry_list/</guid>
+      <description>Having recently had the opportunity to dig into the database at work to do some housekeeping and optimisation, and got (self-inflictedly) nerd-sniped into researching a ton more on this topic than expected. I came up with a laundry list of-sorts to track the typical strategies / pitfalls that I&amp;rsquo;ve come across so far:
+Laundry List Indexes  Are the queries indexed? Sequential scans can be inefficient if tables are big (if there&amp;rsquo;s not a lot of rows, that shouldn&amp;rsquo;t be the main cause) If they are indexed, is the planner making use of it?</description>
+    </item>
+    
+    <item>
+      <title>adding silly utils to Github Pages</title>
+      <link>https://onefangg.github.io/posts/adding_custom_func_gh/</link>
+      <pubDate>Sun, 24 Nov 2024 10:41:31 +0800</pubDate>
+      
+      <guid>https://onefangg.github.io/posts/adding_custom_func_gh/</guid>
+      <description>Preamble I wanted to try a dumb and quick way to just draft up some silly util functions to speed up some mundane debugging I always do at my work.
+My main goal was to get something dirty and hacky; just short of a elegant CICD process.
+I have used Hugo-Papermod for the last almost 2 years or-so; so I just needed to get some static JS files boostrapped onto my hugo config and everything else can be left to the utils to do the heavy lifting.</description>
+    </item>
+    
+    <item>
+      <title>using hatch for application development</title>
+      <link>https://onefangg.github.io/posts/python_setup/</link>
+      <pubDate>Fri, 17 Mar 2023 20:55:00 +0800</pubDate>
+      
+      <guid>https://onefangg.github.io/posts/python_setup/</guid>
+      <description>A barebones exploration of the use of hatch, for the use of development of a simple Python application.
+Using this post as a form of reference or self-help link for python project set-up.
+Or, you can skip the step-by-step tedious explanation by jumping to the full pyproject.toml file.
+Creating a new project hatch new simple-app
+It creates the project with the following project structure:
+simple_app ├── src │ └── simple_app │ ├── __about__.</description>
+    </item>
+    
   </channel>
 </rss>

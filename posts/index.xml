@@ -42,17 +42,5 @@ It creates the project with the following project structure:
 simple_app ├── src │ └── simple_app │ ├── __about__.</description>
     </item>
     
-    <item>
-      <title>hackathons</title>
-      <link>https://onefangg.github.io/posts/hackathons/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://onefangg.github.io/posts/hackathons/</guid>
-      <description>[cheatsheet builder] submitted for iNTUition 2021; won runner up prize
-💾 github link
-[bus to nowhere] submitted for HacknRoll 2021; won Coreteam&amp;rsquo;s Best Roll award
-💾 github link</description>
-    </item>
-    
   </channel>
 </rss>
